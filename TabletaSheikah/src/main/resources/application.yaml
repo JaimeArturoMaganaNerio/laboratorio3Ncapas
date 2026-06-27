@@ -1,24 +1,31 @@
 spring:
   name: TabletaSheikah
   datasource:
-    url: jdbc:h2:mem:hyrule_db
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
+    url: jdbc:postgresql://localhost:5432/hyrule_db
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 2012
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
 server:
   port: 8080
 
 logging:
   level:
-    com.example.hyrule: DEBUG
+    com.example.tabletasheikah: DEBUG
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
